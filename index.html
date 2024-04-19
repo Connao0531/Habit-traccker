@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulario de Hábitos</title>
+<script>
+    // Función para guardar los datos en un archivo JSON
+    function guardarDatos() {
+        var diaSemana = document.getElementById("diaSemana").value;
+        var dormisteBien = document.getElementById("dormisteBien").value;
+        var hicisteEjercicio = document.getElementById("hicisteEjercicio").value;
+        var leiste = document.getElementById("leiste").value;
+        var estudiaste = document.getElementById("estudiaste").value;
+
+        var datos = {
+            "diaSemana": diaSemana,
+            "dormisteBien": dormisteBien,
+            "hicisteEjercicio": hicisteEjercicio,
+            "leiste": leiste,
+            "estudiaste": estudiaste
+        };
+
+        // Convertir los datos a formato JSON
+        var jsonData = JSON.stringify(datos);
+
+        // Guardar los datos en un archivo llamado habit.json
+        var blob = new Blob([jsonData], { type: "application/json" });
+        var url = URL.createObjectURL(blob);
+
+        // Crear un enlace para descargar el archivo
+        var a = document.createElement("a");
+        a.href = url;
+        a.download = "habit.json";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+</script>
+</head>
+<body>
+    <h2>Formulario de Hábitos</h2>
+    <form>
+        <label for="diaSemana">Día de la semana:</label>
+        <select id="diaSemana">
+            <option value="Lunes">Lunes</option>
+            <option value="Martes">Martes</option>
+            <option value="Miércoles">Miércoles</option>
+            <option value="Jueves">Jueves</option>
+            <option value="Viernes">Viernes</option>
+            <option value="Sábado">Sábado</option>
+            <option value="Domingo">Domingo</option>
+        </select>
+        <br><br>
+        <label for="dormisteBien">¿Dormiste bien?</label>
+        <select id="dormisteBien">
+            <option value="Sí">Sí</option>
+            <option value="No">No</option>
+        </select>
+        <br><br>
+        <label for="hicisteEjercicio">¿Hiciste ejercicio?</label>
+        <select id="hicisteEjercicio">
+            <option value="Sí">Sí</option>
+            <option value="No">No</option>
+        </select>
+        <br><br>
+        <label for="leiste">¿Leíste?</label>
+        <select id="leiste">
+            <option value="Sí">Sí</option>
+            <option value="No">No</option>
+        </select>
+        <br><br>
+        <label for="estudiaste">Estudiaste?</label>
+        <select id="estudiaste">
+            <option value="Si">Si</option>
+            <option value="No">No</option>
+            <option value="Poco">Poco</option>
+        </select>
+        <br><br>
+        <button type="button" onclick="guardarDatos()">Guardar</button>
+    </form>
+</body>
+</html>
